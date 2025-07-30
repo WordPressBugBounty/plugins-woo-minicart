@@ -3,7 +3,7 @@
  * Plugin Name:       Minicart for WooCommerce
  * Plugin URI:        https://ahmadshyk.com/item/woocommerce-minicart-pro/
  * Description:       The simple plugin to add Minicart on your WooCommerce website.
- * Version:           2.0.5
+ * Version:           2.0.6
  * Author:            Ahmad Shyk
  * Author URI:        https://ahmadshyk.com
  * License:           GPL-2.0+
@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'WOO_MINICART_VERSION', '2.0.5' );
+define( 'WOO_MINICART_VERSION', '2.0.6' );
 
 /**
  * Activation Hook.
