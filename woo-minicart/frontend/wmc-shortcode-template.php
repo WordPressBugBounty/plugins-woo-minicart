@@ -1,34 +1,52 @@
 <?php
+/**
+ * Minicart shortcode template.
+ */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if ( is_admin() ) return false;
+// Bail if running in admin.
+if ( is_admin() ) {
+	return;
+}
 
-$wmc_options = get_option( 'wmc_options' );
-$minicart_icon = $wmc_options['minicart-icon'];
-if( $minicart_icon == 'wmc-icon-1' ) :
-	$icon = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/graphics/wmc-icon-1.png';
-elseif( $minicart_icon == 'wmc-icon-2' ) :
-	$icon = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/graphics/wmc-icon-2.png';
-elseif( $minicart_icon == 'wmc-icon-3' ) :
-	$icon = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/graphics/wmc-icon-3.png';
-elseif( $minicart_icon == 'wmc-icon-4' ) :
-	$icon = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/graphics/wmc-icon-4.png';
-elseif( $minicart_icon == 'wmc-icon-5' ) :
-	$icon = plugin_dir_url( dirname( __FILE__ ) ) . 'assets/graphics/wmc-icon-5.png';
-elseif( $minicart_icon == 'wmc-icon-custom' ) :
-	$custom_cart_url = get_option('wmc_pro_options')['custom-cart-icon'];
-	$icon = esc_url( $custom_cart_url );
-endif;
+// Options.
+$wmc_options   = (array) get_option( 'wmc_options', array() );
+$minicart_icon = isset( $wmc_options['minicart-icon'] ) ? (string) $wmc_options['minicart-icon'] : 'wmc-icon-1';
+
+// Resolve icon URL.
+$base_url = trailingslashit( plugin_dir_url( dirname( __FILE__ ) ) );
+$icons    = array(
+	'wmc-icon-1' => 'assets/graphics/wmc-icon-1.png',
+	'wmc-icon-2' => 'assets/graphics/wmc-icon-2.png',
+	'wmc-icon-3' => 'assets/graphics/wmc-icon-3.png',
+	'wmc-icon-4' => 'assets/graphics/wmc-icon-4.png',
+	'wmc-icon-5' => 'assets/graphics/wmc-icon-5.png',
+);
+
+$icon_url = isset( $icons[ $minicart_icon ] ) ? $base_url . $icons[ $minicart_icon ] : $base_url . $icons['wmc-icon-1'];
+
+if ( 'wmc-icon-custom' === $minicart_icon ) {
+	$pro_opts = (array) get_option( 'wmc_pro_options', array() );
+	if ( ! empty( $pro_opts['custom-cart-icon'] ) ) {
+		$icon_url = esc_url( $pro_opts['custom-cart-icon'] );
+	}
+}
+
+// Cart count (safe if WC not loaded yet).
+$cart_count = ( function_exists( 'WC' ) && WC()->cart ) ? (int) WC()->cart->get_cart_contents_count() : 0;
 ?>
 <div class="wmc-cart-wrapper shortcode-wrapper">
-	<a class="wmc-cart">
-		<?php //echo $icon; ?>
-		<img src="<?php echo esc_url($icon); ?>" alt="Mini Cart" width="50" height="50" >
-		<span class="wmc-count"><?php echo is_object( WC()->cart ) ? esc_html(WC()->cart->get_cart_contents_count()) : ''; ?></span>
+	<a class="wmc-cart" href="javascript:void(0)" aria-label="<?php echo esc_attr__( 'Open mini cart', 'woo-minicart' ); ?>">
+		<img src="<?php echo esc_url( $icon_url ); ?>" alt="<?php echo esc_attr__( 'Mini Cart', 'woo-minicart' ); ?>" width="50" height="50">
+		<span class="wmc-count"><?php echo esc_html( (string) $cart_count ); ?></span>
 	</a>
-	<?php include 'wmc-content.php'; ?>
+	<?php
+		$template = plugin_dir_path( __FILE__ ) . 'wmc-content.php';
+		if ( file_exists( $template ) ) {
+			include $template;
+		}
+	?>
 </div>

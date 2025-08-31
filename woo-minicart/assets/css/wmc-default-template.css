@@ -1,169 +1,192 @@
-.wmc-cart-wrapper{
-	width: 270px;
-	position: fixed;
-	z-index: 99999;
-}
-.wmc-cart{
-	position: absolute;
-	cursor: pointer;
-}
-.wmc-count{
-	position: absolute;
-	right: -10px;
-	height: 25px;
-	width: 25px;
-	border-radius: 100px;
-	background-color: #000;
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	font-size: 12px;
-	top: 0;
-}
-.wmc-content{
-	height: 420px;
-	position: relative;
-	background-color: #fff;
-	overflow: hidden;
-	top: 50px;
-	width: 270px;
-	right: 10px;
-	display: none;
-	border:1px solid #ccc;
-	text-align: center;
-	z-index: 999;
-}
-.wmc-cart-wrapper:hover .wmc-content{
-	display: block;
-}
-.wmc-content h3{
-	font-size:20px !important;
-	height: 40px;
-	margin: 0 !important;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #333;
-	color: #fff;
-}
-.wmc-subtotal{
-	height: 40px;
-}
-.wmc-bottom-buttons{
-	width: 100%;
-	height: 50px;
-}
-.wmc-bottom-buttons a{
-	width: 50%;
-	background-color: #333;
-	display: flex;
-	float: left;
-	justify-content:center;
-	align-items:center;
-	height:100%;
-	font-size: 20px;
-	color: #fff !important;
-	text-decoration: none !important;
-}
-.wmc-products{
-	height: 290px;
-	overflow-y: auto;
-	list-style-type: none;
-	margin: 0 !important;
-	padding-left: 0;
-}
-.wmc-products li{
-	padding: 5px;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	border-bottom: 1px solid #ccc;
-}
-.wmc-products li:last-child{
-	border-bottom: none;
-}
-.wmc-remove{
-	width: 10%;
-}
-.wmc-image{
-	width: 30%;
-}
-.wmc-product-title{
-	color:#333 !important;
-	text-decoration:none !important;
-}
-.wmc-image img{
-	max-width: 100%;
-	height: auto;
-}
-.wmc-details{
-	width: 60%;
-	text-align: center;
-}
-.wmc-details h4{
-	font-size: 18px;
-	font-weight: 700;
-}
-.wmc-price{
-	font-size: 16px;
-}
-.wmc-content h5{
-	font-size: 18px;
-	padding: 0;
-	font-weight: 700;
-	border-top:1px solid #ccc;
-	margin: 0 !important;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.wmc-empty{
-	height: auto;
+/* Minicart core */
+.wmc-cart-wrapper {
+  position: fixed;
+  width: 270px;
+  z-index: 99999;
 }
 
-.wmc-cart-wrapper.shortcode-wrapper{
-	position: relative !important;
-	top: unset !important;
-	bottom: unset !important;
-	right: unset !important;
-	left: unset !important;
-	width: auto !important;
-	z-index: 99999;
+.wmc-cart {
+  position: absolute;
+  cursor: pointer;
 }
-.shortcode-wrapper .wmc-cart{
-	position: relative !important;
+
+.wmc-count {
+  position: absolute;
+  top: 0;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 9999px;
+  background-color: #000;
+  color: #fff;
+  font-size: 12px;
 }
-.shortcode-wrapper .wmc-content{
-	position: absolute !important;
-	bottom: unset !important;
-	top: 60px !important;
-	right: 0;
-	z-index: 99999;
+
+/* Panel */
+.wmc-content {
+  position: relative;
+  top: 50px;
+  right: 10px;
+  width: 270px;
+  height: 420px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  overflow: hidden;
+  display: none;
+  z-index: 999;
 }
-.shortcode-wrapper ul{
-	position: relative !important;
-	top: unset !important;
-	left: unset !important;
-	float: none !important;
+
+/* Open on hover */
+.wmc-cart-wrapper:hover .wmc-content {
+  display: block;
 }
-.shortcode-wrapper li{
-	max-width: 100% !important;
+
+/* Header */
+.wmc-content h3 {
+  margin: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: #fff;
+  font-size: 20px;
 }
-.shortcode-wrapper ul li a{
-	max-width: 100% !important;
-	padding: 0 !important;
-	display: flex !important;
-	align-items: center;
-	justify-content: center;
-	text-indent: unset !important;
+
+/* Subtotal */
+.wmc-subtotal {
+  height: 40px;
 }
-.shortcode-wrapper li{
-	display: inline-flex !important;
+
+.wmc-content h5 {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #ccc;
+  font-size: 18px;
+  font-weight: 700;
 }
-.shortcode-wrapper .wmc-bottom-buttons a{
-	display: flex !important;
+
+/* Buttons */
+.wmc-bottom-buttons {
+  width: 100%;
+  height: 50px;
+}
+
+.wmc-bottom-buttons a {
+  float: left;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* Products list */
+.wmc-products {
+  height: 290px;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.wmc-products li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.wmc-products li:last-child {
+  border-bottom: none;
+}
+
+/* Item parts */
+.wmc-remove { width: 10%; }
+.wmc-image  { width: 30%; }
+.wmc-details { width: 60%; text-align: center; }
+
+.wmc-product-title {
+  color: #333;
+  text-decoration: none;
+}
+
+.wmc-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.wmc-details h4 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.wmc-price {
+  font-size: 16px;
+}
+
+/* Empty state */
+.wmc-empty {
+  height: auto;
+}
+
+/* Shortcode context overrides */
+.wmc-cart-wrapper.shortcode-wrapper {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: auto;
+  z-index: 99999;
+}
+
+.shortcode-wrapper .wmc-cart {
+  position: relative;
+}
+
+.shortcode-wrapper .wmc-content {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: auto;
+  z-index: 99999;
+}
+
+.shortcode-wrapper ul {
+  position: relative;
+  top: auto;
+  left: auto;
+  float: none;
+}
+
+.shortcode-wrapper li {
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.shortcode-wrapper ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 0;
+  text-indent: 0;
+}
+
+.shortcode-wrapper .wmc-bottom-buttons a {
+  display: flex;
 }
